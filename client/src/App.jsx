@@ -4,6 +4,7 @@ import Signup from "./pages/Signup";
 import AdminDashboard from "./components/AdminDashboard";
 import UserDashboard from "./components/UserDashboard";
 import ForgotPassword from "./pages/ForgotPassword";
+import UserList from "./components/UserList";
 
 function App() {
     return (
@@ -15,6 +16,7 @@ function App() {
                 <Route path="/admin" element={<AdminDashboard />} />
                 <Route path="/user" element={<UserDashboard />} />
                 <Route path="/forgot-password" element={<ForgotPassword />} />
+                <Route path="/admin/users" element={<UserList />} />
             </Routes>
         </Router>
     );

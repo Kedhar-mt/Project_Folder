@@ -6,6 +6,7 @@ const folderRoutes = require("./routes/folderRoutes");
 const authRoutes = require("./routes/authRoutes");
 const { sendResetEmail } = require('./utils/emailService');
 const setupTokenCleanupJob = require('./jobs/tokenCleanupJob');
+const userRoutes = require("./routes/userRoutes");
 
 // Load environment variables
 dotenv.config();
@@ -30,7 +31,9 @@ mongoose.connect(process.env.MONGO_URI)
 
 // Use routes
 app.use("/api/auth", authRoutes);
+app.use("/api/users", userRoutes);
 app.use("/api/folder", folderRoutes);
+
 // Test email route
 app.get('/test-email', async (req, res) => {
     try {

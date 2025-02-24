@@ -4,8 +4,11 @@ import * as XLSX from "xlsx";
 import "../styles/AdminDashboard.css";
 import api from "../utils/api";
 import { handleLogout } from '../utils/api';
+import { useNavigate } from "react-router-dom";
+
 
 const AdminDashboard = () => {
+  const navigate = useNavigate();
   const [folders, setFolders] = useState([]);
   const [folderName, setFolderName] = useState("");
   const [selectedFiles, setSelectedFiles] = useState({});
@@ -348,18 +351,27 @@ const AdminDashboard = () => {
       setUploadProgress(0);
     }
   };
+  const handleViewUsers = () => {
+    navigate('/admin/users');
+  };
+  
 
   return (
     <div className="p-6">
       <h2 className="text-2xl font-bold mb-6">Admin Dashboard</h2>
-      <button onClick={handleLogout} className="bg-red-500 text-white px-4 py-2 rounded mb-6">
+      <button onClick={handleLogout}>
         Logout
       </button>
+      <button 
+          onClick={handleViewUsers}
+          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+        >
+          View Users
+        </button>
 
-      {error && <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">{error}</div>}
-
+      {error && <div>{error}</div>}
       {/* Create Folder Section */}
-      <div className="bg-white p-6 rounded-lg shadow-md mb-6">
+      <div>
         <input
           type="text"
           value={folderName}
